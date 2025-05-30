@@ -1,5 +1,8 @@
 #!/bin/zsh
+
+# run_once_install-macos-dev-environment.sh
 # This script runs once when chezmoi apply is executed
+# Place this in your dotfiles repo as: run_once_install-macos-dev-environment.sh
 
 set -e  # Exit on any error
 
@@ -53,18 +56,14 @@ brew update
 
 # Install GUI applications
 log "Installing GUI applications..."
-GUI_APPS=(
-    "iterm2"        # Terminal emulator
-)
 
-for app in "${GUI_APPS[@]}"; do
-    if brew list --cask "$app" &>/dev/null; then
-        log "$app already installed"
-    else
-        log "Installing $app..."
-        brew install --cask "$app"
-    fi
-done
+# Check for iTerm2 - it might be installed outside of Homebrew
+if [[ -d "/Applications/iTerm.app" ]] || brew list --cask iterm2 &>/dev/null; then
+    log "iTerm2 already installed"
+else
+    log "Installing iTerm2..."
+    brew install --cask iterm2
+fi
 
 # Install fonts
 log "Installing fonts..."
