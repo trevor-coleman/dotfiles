@@ -67,9 +67,8 @@ fi
 
 # Install fonts
 log "Installing fonts..."
-brew tap homebrew/cask-fonts
-brew install --cask font-fira-code
-brew install --cask font-fira-code-nerd-font
+brew install font-fira-code
+brew install font-fira-code-nerd-font
 
 # Install CLI tools via Homebrew
 log "Installing CLI tools..."
